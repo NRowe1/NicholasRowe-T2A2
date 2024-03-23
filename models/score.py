@@ -11,8 +11,12 @@ class Score(db.Model):
     player_id = db.Column(db.Integer, db.ForeignKey('player.player_id'), nullable=False)
     player = db.relationship('Player', back_populates='score')
 
+    game_id = db.Column(db.Integer, db.ForeignKey('games.games_id'))  # Corrected foreign key reference
+    # games = db.relationship('games', back_populates='score')
+
+
 
 class ScoreSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        fields = ('score_id','goals', 'points')
+        fields = ('score_id','goals', 'points', 'player_id', 'games_id')
         model = Score

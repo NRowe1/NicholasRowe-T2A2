@@ -21,9 +21,14 @@ def create_app():
     app.register_blueprint(db_commands)
     
     from Controllers.auth_controller import player_bp
-    app.register_blueprint(player_bp)\
+    app.register_blueprint(player_bp)
     
     from Controllers.score_controller import goal_bp
     app.register_blueprint(goal_bp)
+
+    from Controllers.team_controller import team_bp
+    app.register_blueprint(team_bp)
     
+    from Controllers.state_controller import state_bp
+    app.register_blueprint(state_bp)
     return app

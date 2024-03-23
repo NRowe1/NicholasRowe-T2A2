@@ -8,6 +8,8 @@ class Team(db.Model):
     
     # Adjust the backref name to avoid conflict
     players = db.relationship('Player', back_populates='team')
+    games = db.relationship('Games', back_populates='team')
+
 
 class TeamSchema(ma.Schema):
     class Meta:

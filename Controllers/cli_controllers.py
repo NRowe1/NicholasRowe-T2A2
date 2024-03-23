@@ -1,12 +1,13 @@
 from flask import Blueprint
 
+from sqlalchemy import text
+
+
 from init import db, bcrypt
 from models.team import Team  # Import Team model here
-
 from models.player import Player
 from models.score import Score
-
-db_commands = Blueprint('db', __name__)
+from models.games import Games  # Import the Games model here
 
 db_commands = Blueprint('db', __name__)
 
@@ -15,7 +16,6 @@ def create_tables():
     db.create_all()
     print("Tables created")
 
-from sqlalchemy import text
 
 @db_commands.cli.command('drop')
 def drop_tables():
@@ -29,6 +29,27 @@ def drop_tables():
 
 @db_commands.cli.command('seed')
 def seed_tables():
+
+    teams = [
+        Team(
+            team_name="Brisbane Lions",
+        )
+    ]
+    db.session.add_all(teams)
+    db.session.commit()
+
+    games = [
+        Games(
+            date="9/02/24",
+            time = "10:45",
+            location = 'gabba',
+            team=teams[0]
+        )
+    ]
+    
+    db.session.add_all(games)
+    db.session.commit()
+
     players = [  
         Player(  
             first_name="Charlie",
@@ -49,13 +70,8 @@ def seed_tables():
     ]
     db.session.add_all(scores)
     db.session.commit()
-    team = [
-        Team(
-            team_name="Brisbane Lions"
-        )
-    ]
-    
-    db.session.add_all(team)
-    db.session.commit()
+
+
+
 
     print("Tables seeded")

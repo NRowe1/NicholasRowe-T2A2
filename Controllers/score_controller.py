@@ -17,7 +17,8 @@ def create_goal():
     goal = Score(
         score_id=body_data.get('score_id'),
         goals=body_data.get('goals'),
-        points=body_data.get('points')
+        points=body_data.get('points'),
+        player_id=body_data.get('player_id')
     )
     db.session.add(goal)
     db.session.commit()
@@ -38,3 +39,16 @@ def get_all_goals():
     all_goals = Score.query.all()
     serialized_goals = goal_schema.dump(all_goals, many=True)
     return jsonify(serialized_goals)
+
+@goal_bp.route('/<int:score_id>', methods=['DELETE'])
+def delete_player(score_id):
+    # Query the player to be deleted
+    goal = Score.query.filter_by(score_id=score_id).first()
+
+    # If player exists, delete it
+    if goal:
+        db.session.delete(goal)
+        db.session.commit()
+        return {"message": f"Player with id {score_id} has been deleted"}, 200
+    else:
+        return {"error": f"Player with id {score_id} not found"}, 404
