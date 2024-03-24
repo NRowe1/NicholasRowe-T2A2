@@ -23,8 +23,25 @@ Finally the performance isnt as fast as other database systems and is not ideal 
 ## R4	
 ### Identify and discuss the key functionalities and benefits of an ORM
 
+An ORM simplifies database interactions by abstracting away SQL complexities, mapping object-oriented models to relational databases.
+
+It streamlines database schema management, and provides tools for data validation and type conversion. ORM libraries optimize performance with lazy loading and query caching while promoting the object-oriented programming paradigm. 
+
+They facilitate rapid application development by minimizing low-level database tasks, allowing developers to focus on business logic. 
+
+Overall, ORMs enhance code quality, developer productivity, and the development of scalable, maintainable applications.
+
+
 ## R5	
 ### Document all endpoints for your API
+
+Most of my endpoints were all GET and POST methods
+
+To keep my code consistent I kept the same URL's with all controllers but changed the names in relation to what data needs to be found. 
+
+Integer and string were used with all JSON - POST methods.
+
+I did yuse a date and time module for the games table.
 
 ## R6	
 ### An ERD for your app
@@ -36,8 +53,16 @@ My ERD of the app is a very simple and clean layout having most tables linking t
 ## R7	
 ### Detail any third party services that your app will use
 
+I would use API's like good maps or mapbox to help users find where the games are being played
+
+Social media API's, facebook and twitter can be helpful for uses to share content or fetching user data from social profiles
+
 ## R8
 ### Describe your projects models in terms of the relationships they have with each other
+
+The player belongs to a team by having a team_id as a foriegn key, this is referenced the team_id primary key in the Team model. Finally in the player model, a single player can have multiple scores. This is done by a player_id forieng key in the Score model
+
+A game belongs to a team, this is represented through a forieng key team_id in the Games model.
 
 ## R9	
 ### Discuss the database relations to be implemented in your application
@@ -55,6 +80,8 @@ and finally the states table has a one to many relationship with the Teams table
 ## R10	
 ### Describe the way tasks are allocated and tracked in your project
 
-Using trello allowed me to keep on track on what files i need to complete 
+Using trello allowed me to keep on track on what files i need to complete, when I complete a models i would copy the code and put it in the comment card for in trello
+
+Another method I have used is commiting my code on GitHub. This allowed me to keep previous saves in case my code doesnt work as I hoped.
 
 I 
